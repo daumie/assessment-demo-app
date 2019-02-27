@@ -1,0 +1,42 @@
+assessment-demo-andela.json
+.vscode
+.env
+
+# module directory
+.terraform/
+
+# compiled files
+*.tfstate
+*.tfstate.backup
+
+*.py[co]
+*.DS_*
+# Packages
+*.egg
+*.egg-info
+dist
+build
+eggs
+parts
+bin
+var
+sdist
+develop-eggs
+.installed.cfg
+
+# Installer logs
+pip-log.txt
+
+# Unit test / coverage reports
+.coverage
+.tox
+
+#Translations
+*.mo
+
+#Mr Developer
+venv
+*.pyc
+build
+
+__pycache__/
