@@ -1,0 +1,39 @@
+{
+  "variables": {
+    "gcloud_access_json_key": "{{env `PACKER_GCLOUD_SERVICE_ACCOUNT`}}",
+    "packer_test_flask_app": "{{env `FLASK_APP_DIRECTORY`}}"
+  },
+  "builders": [
+    {
+      "type": "googlecompute",
+      "disk_size": 10,
+      "image_name": "kachumbari",
+      "image_description": "Ubuntu image with Flask Hello World Application",
+      "account_file": "{{user `gcloud_access_json_key`}}",
+      "project_id": "assessment-demo-andela",
+      "source_image": "ubuntu-1604-xenial-v20170815a",
+      "ssh_username": "dominic_sokoro",
+      "zone": "europe-west2-a",
+      "region": "europe-west2",
+      "machine_type": "n1-standard-1"
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell-local",
+      "command": "mkdir -p ~/app"
+    },
+
+    {
+      "type": "file",
+      "source": "{{user `packer_test_flask_app`}}",
+      "destination": "~/app",
+      "direction": "upload"
+    },
+
+    {
+      "type": "shell",
+      "inline": ["sudo chmod +x ~/app/start.sh && bash ~/app/start.sh"]
+    }
+  ]
+}
